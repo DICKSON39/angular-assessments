@@ -40,6 +40,8 @@ export class AppComponent implements OnInit {
   fetchPosts(userId: number) {
     this.http.get<any[]>(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`)
       .subscribe(posts => {
+        console.log(`Post`, posts);
+        
         this.posts = posts;
         this.selectedPostId = posts.length > 0 ? posts[0].id : null;
         if (this.selectedPostId) this.fetchComments(this.selectedPostId);
